@@ -4,12 +4,14 @@ import progressService from './api/progressService';
 import settingsService from './api/settingsService';
 import wordProblemService from './api/wordProblemService';
 import letterService from './api/letterService';
+import userService from './api/userService';
 
 export {
   problemService,
-sessionService,
+  sessionService,
   progressService,
   settingsService,
   wordProblemService,
-  letterService
+  letterService,
+  userService
 };
