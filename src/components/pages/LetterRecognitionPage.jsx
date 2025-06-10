@@ -50,12 +50,12 @@ const LetterRecognitionPage = () => {
     }
   }, [exerciseType, difficulty]);
 
-  const speakLetter = useCallback((letter) => {
+const speakLetter = useCallback((letter) => {
     if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(letter);
+      const utterance = new window.SpeechSynthesisUtterance(letter);
       utterance.rate = 0.8;
       utterance.pitch = 1.2;
-      speechSynthesis.speak(utterance);
+      window.speechSynthesis.speak(utterance);
     }
   }, []);
 
@@ -407,8 +407,9 @@ return null;
               />
             </div>
           </motion.div>
-        )}
+)}
       </AnimatePresence>
+      </div>
     </div>
   );
 };
