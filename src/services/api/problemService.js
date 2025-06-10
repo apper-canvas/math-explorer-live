@@ -135,7 +135,6 @@ resetSession(difficulty, operation) {
     const key = this.getSessionKey(difficulty, operation);
     this.sessionTracking.delete(key);
   }
-
   async generateMultiplication(minFactor, maxFactor) {
     await delay(200);
     try {
@@ -312,11 +311,9 @@ resetSession(difficulty, operation) {
       answer: num1 - num2,
       createdAt: new Date().toISOString()
     };
-    
-    this.problems.push(problem);
-return { ...problem };
+this.problems.push(problem);
+    return { ...problem };
   }
-
   // Get available question count for a difficulty/operation combination
   getAvailableQuestionCount(difficulty, operation) {
     const questionBank = this.questionBanks[operation]?.[difficulty];
@@ -344,9 +341,9 @@ return { ...problem };
     return problem ? { ...problem } : null;
   }
 
-  async create(problem) {
+async create(problem) {
     await delay(300);
-const newProblem = {
+    const newProblem = {
       ...problem,
       id: `custom_${Date.now()}_${this.currentId++}`,
       createdAt: new Date().toISOString()
@@ -356,4 +353,7 @@ const newProblem = {
   }
 }
 
-export default ProblemService;
+// Export an instance of the service rather than the class
+// This ensures methods are available when imported
+const problemService = new ProblemService();
+export default problemService;
