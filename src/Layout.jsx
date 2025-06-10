@@ -2,13 +2,14 @@ import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import ApperIcon from './components/ApperIcon';
 import { routeArray } from './config/routes';
-
+import { SettingsProvider } from './contexts/SettingsContext';
 function Layout() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden bg-white">
+    <SettingsProvider>
+      <div className="h-screen flex flex-col overflow-hidden bg-white">
       {/* Header */}
       <header className="flex-shrink-0 h-16 bg-white border-b border-surface-200 z-40">
         <div className="h-full flex items-center justify-between px-4 lg:px-6">
@@ -78,14 +79,14 @@ function Layout() {
             </nav>
           </div>
         )}
-      </header>
+</header>
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto">
         <Outlet />
       </main>
-    </div>
+      </div>
+    </SettingsProvider>
   );
-}
 
 export default Layout;

@@ -3,7 +3,7 @@ import MultiplicationPage from '@/components/pages/MultiplicationPage';
 import DivisionPage from '@/components/pages/DivisionPage';
 import ProgressPage from '@/components/pages/ProgressPage';
 import WordProblemsPage from '@/components/pages/WordProblemsPage';
-
+import SettingsPage from '@/components/pages/SettingsPage';
 export const routes = {
   home: {
     id: 'home',
@@ -33,12 +33,19 @@ export const routes = {
     icon: 'BookOpen',
     component: WordProblemsPage
   },
-  progress: {
+progress: {
     id: 'progress',
     label: 'Progress',
     path: '/progress',
     icon: 'TrendingUp',
     component: ProgressPage
+  },
+  settings: {
+    id: 'settings',
+    label: 'Settings',
+    path: '/settings',
+    icon: 'Settings',
+    component: SettingsPage
   }
 };
 
