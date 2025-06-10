@@ -1,12 +1,14 @@
+import React from 'react';
 import { motion } from 'framer-motion';
+import Text from '@/components/atoms/Text';
 
-function MultiplicationGrid({ highlight = null, maxSize = 12 }) {
+const MultiplicationGrid = ({ highlight = null, maxSize = 12 }) => {
   const size = Math.min(maxSize, 12);
   const [highlightX, highlightY] = highlight || [null, null];
 
   return (
     <div className="bg-white rounded-2xl shadow-lg border border-surface-200 p-6">
-      <h3 className="font-semibold text-surface-800 mb-4">Multiplication Grid</h3>
+      <Text type="h3" className="font-semibold text-surface-800 mb-4">Multiplication Grid</Text>
       
       <div className="overflow-x-auto">
         <div className="grid gap-1 p-2" style={{ gridTemplateColumns: `repeat(${size + 1}, minmax(0, 1fr))` }}>
@@ -29,7 +31,7 @@ function MultiplicationGrid({ highlight = null, maxSize = 12 }) {
 
           {/* Grid rows */}
           {Array.from({ length: size }, (_, i) => i + 1).map(row => (
-            <>
+            <React.Fragment key={`row-${row}`}>
               {/* Left header column */}
               <div
                 key={`row-header-${row}`}
@@ -66,12 +68,12 @@ function MultiplicationGrid({ highlight = null, maxSize = 12 }) {
                   </motion.div>
                 );
               })}
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default MultiplicationGrid;

@@ -1,7 +1,7 @@
-import Home from '../pages/Home';
-import Multiplication from '../pages/Multiplication';
-import Division from '../pages/Division';
-import Progress from '../pages/Progress';
+import HomePage from '@/components/pages/HomePage';
+import MultiplicationPage from '@/components/pages/MultiplicationPage';
+import DivisionPage from '@/components/pages/DivisionPage';
+import ProgressPage from '@/components/pages/ProgressPage';
 
 export const routes = {
   home: {
@@ -9,28 +9,28 @@ export const routes = {
     label: 'Home',
     path: '/',
     icon: 'Home',
-    component: Home
+component: HomePage
   },
   multiplication: {
     id: 'multiplication',
     label: 'Multiplication',
     path: '/multiplication',
     icon: 'X',
-    component: Multiplication
+component: MultiplicationPage
   },
   division: {
     id: 'division',
     label: 'Division',
     path: '/division',
     icon: 'Divide',
-    component: Division
+component: DivisionPage
   },
   progress: {
     id: 'progress',
     label: 'Progress',
     path: '/progress',
     icon: 'TrendingUp',
-    component: Progress
+component: ProgressPage
   }
 };
 
