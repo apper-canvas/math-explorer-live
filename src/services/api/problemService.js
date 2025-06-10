@@ -131,13 +131,13 @@ class ProblemService {
     this.sessionTracking.set(key, usedQuestions);
   }
 
-  resetSession(difficulty, operation) {
+resetSession(difficulty, operation) {
     const key = this.getSessionKey(difficulty, operation);
     this.sessionTracking.delete(key);
   }
-async generateMultiplication(minFactor, maxFactor) {
+
+  async generateMultiplication(minFactor, maxFactor) {
     await delay(200);
-    
     try {
       console.log('ProblemService: Generating multiplication with range:', minFactor, 'to', maxFactor);
       
@@ -205,9 +205,9 @@ async generateMultiplication(minFactor, maxFactor) {
       console.error('ProblemService: Error generating multiplication problem:', error);
       throw error;
     }
-  }
+}
 
-async generateDivision(minDivisor, maxDivisor) {
+  async generateDivision(minDivisor, maxDivisor) {
     await delay(200);
     
     try {
@@ -314,13 +314,13 @@ async generateDivision(minDivisor, maxDivisor) {
     };
     
     this.problems.push(problem);
-    return { ...problem };
+return { ...problem };
   }
-// Get available question count for a difficulty/operation combination
+
+  // Get available question count for a difficulty/operation combination
   getAvailableQuestionCount(difficulty, operation) {
     const questionBank = this.questionBanks[operation]?.[difficulty];
     if (!questionBank) return 0;
-    
     const usedQuestions = this.getUsedQuestions(difficulty, operation);
     return questionBank.filter(q => 
       !usedQuestions.has(q.questionId)
@@ -346,9 +346,9 @@ async generateDivision(minDivisor, maxDivisor) {
 
   async create(problem) {
     await delay(300);
-    const newProblem = {
+const newProblem = {
       ...problem,
-id: `custom_${Date.now()}_${this.currentId++}`,
+      id: `custom_${Date.now()}_${this.currentId++}`,
       createdAt: new Date().toISOString()
     };
     this.problems.push(newProblem);
