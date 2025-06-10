@@ -218,40 +218,95 @@ class WordProblemService {
     };
   }
 
-  generateDifficultyQuestions(operation, difficulty, minNum, maxNum, count) {
+generateDifficultyQuestions(operation, difficulty, minNum, maxNum, count) {
     const questions = [];
     const contexts = ['shopping', 'food', 'sports', 'school', 'animals', 'travel'];
+    const usedCombinations = new Set(); // Track used operand combinations
     
     for (let i = 0; i < count; i++) {
       const context = contexts[i % contexts.length];
       let operand1, operand2, answer;
+      let attempts = 0;
+      let combinationKey;
       
       // Generate unique operand combinations for each question
-      switch (operation) {
-        case 'addition':
-          operand1 = minNum + (i * 2) % (maxNum - minNum);
-          operand2 = minNum + ((i * 3) + 1) % (maxNum - minNum);
-          answer = operand1 + operand2;
-          break;
-          
-        case 'subtraction':
-          operand1 = Math.max(minNum + (i * 3), minNum + 5);
-          operand2 = minNum + (i % (operand1 - minNum));
-          answer = operand1 - operand2;
-          break;
-          
-        case 'multiplication':
-          operand1 = Math.max(minNum, minNum + (i % (maxNum - minNum + 1)));
-          operand2 = Math.max(minNum, minNum + ((i + 2) % (maxNum - minNum + 1)));
-          answer = operand1 * operand2;
-          break;
-          
-        case 'division':
-          operand2 = Math.max(minNum, minNum + (i % (maxNum - minNum + 1)));
-          answer = Math.max(minNum, minNum + ((i + 1) % (maxNum - minNum + 1)));
-          operand1 = operand2 * answer;
-          break;
-      }
+      do {
+        switch (operation) {
+          case 'addition':
+            operand1 = minNum + Math.floor((i * 2.5 + attempts) % (maxNum - minNum + 1));
+            operand2 = minNum + Math.floor((i * 1.7 + attempts + 3) % (maxNum - minNum + 1));
+            answer = operand1 + operand2;
+            break;
+            
+          case 'subtraction':
+            operand1 = Math.max(minNum + Math.floor((i * 3 + attempts + 5)), minNum + 5);
+            operand2 = minNum + Math.floor((i + attempts * 2) % (operand1 - minNum + 1));
+            answer = operand1 - operand2;
+            break;
+            
+          case 'multiplication':
+            // Ensure 10 unique multiplication combinations
+            if (difficulty === 'easy') {
+              // Easy: Use specific combinations to ensure uniqueness (1-5 range)
+              const easyMultCombos = [
+                [2, 3], [1, 4], [2, 5], [3, 4], [1, 5],
+                [2, 2], [3, 3], [4, 4], [1, 3], [2, 4]
+              ];
+              [operand1, operand2] = easyMultCombos[i % easyMultCombos.length];
+            } else if (difficulty === 'medium') {
+              // Medium: 2-12 range with strategic distribution
+              const mediumMultCombos = [
+                [3, 6], [4, 7], [5, 8], [2, 9], [6, 7],
+                [3, 8], [4, 9], [5, 6], [7, 8], [2, 12]
+              ];
+              [operand1, operand2] = mediumMultCombos[i % mediumMultCombos.length];
+            } else {
+              // Hard: 5-25 range with larger combinations
+              const hardMultCombos = [
+                [6, 8], [7, 9], [8, 10], [5, 12], [9, 11],
+                [6, 15], [7, 14], [8, 13], [10, 12], [5, 20]
+              ];
+              [operand1, operand2] = hardMultCombos[i % hardMultCombos.length];
+            }
+            answer = operand1 * operand2;
+            break;
+            
+          case 'division':
+            // Ensure 10 unique division combinations
+            if (difficulty === 'easy') {
+              // Easy: Use specific combinations that result in whole numbers (1-5 range)
+              const easyDivCombos = [
+                [6, 2], [8, 4], [10, 5], [9, 3], [12, 4],
+                [15, 3], [16, 4], [20, 5], [14, 2], [18, 3]
+              ];
+              [operand1, operand2] = easyDivCombos[i % easyDivCombos.length];
+              answer = operand1 / operand2;
+            } else if (difficulty === 'medium') {
+              // Medium: 2-12 range
+              const mediumDivCombos = [
+                [24, 6], [35, 7], [48, 8], [27, 9], [60, 10],
+                [44, 11], [36, 12], [32, 8], [42, 7], [54, 9]
+              ];
+              [operand1, operand2] = mediumDivCombos[i % mediumDivCombos.length];
+              answer = operand1 / operand2;
+            } else {
+              // Hard: 5-25 range
+              const hardDivCombos = [
+                [84, 12], [105, 15], [144, 18], [125, 25], [96, 16],
+                [120, 20], [135, 15], [168, 21], [140, 20], [156, 12]
+              ];
+              [operand1, operand2] = hardDivCombos[i % hardDivCombos.length];
+              answer = operand1 / operand2;
+            }
+            break;
+        }
+        
+        combinationKey = `${operand1}_${operand2}`;
+        attempts++;
+      } while (usedCombinations.has(combinationKey) && attempts < 50);
+      
+      // Add combination to used set to prevent duplicates
+      usedCombinations.add(combinationKey);
       
       questions.push({
         questionId: `${operation}_${difficulty}_${i + 1}`,
