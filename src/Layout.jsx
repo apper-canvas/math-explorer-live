@@ -7,12 +7,12 @@ function Layout() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-<SettingsProvider>
+  return (
+    <SettingsProvider>
       <div className="h-screen flex flex-col overflow-hidden bg-lightBlue/10">
-      {/* Header */}
-      <header className="flex-shrink-0 h-16 bg-lightBlue/20 border-b border-surface-200 z-40">
-        <div className="h-full flex items-center justify-between px-4 lg:px-6">
-        <div className="h-full flex items-center justify-between px-4 lg:px-6">
+        {/* Header */}
+        <header className="flex-shrink-0 h-16 bg-lightBlue/20 border-b border-surface-200 z-40">
+          <div className="h-full flex items-center justify-between px-4 lg:px-6">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
               <ApperIcon name="Calculator" className="w-5 h-5 text-white" />
@@ -81,11 +81,11 @@ function Layout() {
         )}
 </header>
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
-        <Outlet />
-      </main>
-</div>
+        {/* Main Content */}
+        <main className="flex-1 overflow-y-auto">
+          <Outlet />
+        </main>
+      </div>
     </SettingsProvider>
   );
 }
