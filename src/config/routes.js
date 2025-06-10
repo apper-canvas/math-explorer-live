@@ -4,6 +4,7 @@ import DivisionPage from '@/components/pages/DivisionPage';
 import ProgressPage from '@/components/pages/ProgressPage';
 import WordProblemsPage from '@/components/pages/WordProblemsPage';
 import SettingsPage from '@/components/pages/SettingsPage';
+import LetterRecognitionPage from '@/components/pages/LetterRecognitionPage';
 export const routes = {
   home: {
     id: 'home',
@@ -25,13 +26,20 @@ export const routes = {
     path: '/division',
     icon: 'Divide',
     component: DivisionPage
-  },
+},
   wordproblems: {
     id: 'wordproblems',
     label: 'Word Problems',
     path: '/word-problems',
     icon: 'BookOpen',
     component: WordProblemsPage
+  },
+  letterrecognition: {
+    id: 'letterrecognition',
+    label: 'Letter Recognition',
+    path: '/letter-recognition',
+    icon: 'Type',
+    component: LetterRecognitionPage
   },
 progress: {
     id: 'progress',

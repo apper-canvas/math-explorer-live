@@ -29,8 +29,42 @@ body {
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
-  }
+}
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+  
+  /* Letter Recognition Specific Styles */
+  .letter-card {
+    @apply transition-all duration-300 ease-out hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-reading-primary;
+  }
+  
+  .letter-dragging {
+    @apply transform rotate-3 shadow-lg z-50;
+  }
+  
+  .drop-zone-active {
+    @apply bg-reading-light border-2 border-dashed border-reading-primary;
+  }
+  
+  .drop-zone-valid {
+    @apply bg-green-50 border-green-300;
+  }
+  
+  .drop-zone-invalid {
+    @apply bg-red-50 border-red-300;
+  }
+  
+  /* Accessibility improvements */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 }
