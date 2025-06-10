@@ -135,24 +135,57 @@ class ProblemService {
     const key = this.getSessionKey(difficulty, operation);
     this.sessionTracking.delete(key);
   }
-
-  async generateMultiplication(minFactor, maxFactor) {
+async generateMultiplication(minFactor, maxFactor) {
     await delay(200);
     
-    const difficulty = this.getDifficultyFromRange(minFactor, maxFactor, 'multiplication');
-    const questionBank = this.questionBanks.multiplication[difficulty];
-    const usedQuestions = this.getUsedQuestions(difficulty, 'multiplication');
-    
-    // Filter out used questions
-    const availableQuestions = questionBank.filter(q => 
-      !usedQuestions.has(q.questionId)
-    );
-    
-    // If no questions available, reset session and use all questions
-    if (availableQuestions.length === 0) {
-      this.resetSession(difficulty, 'multiplication');
-      const resetQuestions = questionBank.slice(); // Copy all questions
-      const selectedQuestion = resetQuestions[Math.floor(Math.random() * resetQuestions.length)];
+    try {
+      console.log('ProblemService: Generating multiplication with range:', minFactor, 'to', maxFactor);
+      
+      const difficulty = this.getDifficultyFromRange(minFactor, maxFactor, 'multiplication');
+      console.log('ProblemService: Determined difficulty:', difficulty);
+      
+      const questionBank = this.questionBanks.multiplication[difficulty];
+      if (!questionBank || questionBank.length === 0) {
+        throw new Error(`No question bank found for multiplication difficulty: ${difficulty}`);
+      }
+      
+      console.log('ProblemService: Question bank size:', questionBank.length);
+      
+      const usedQuestions = this.getUsedQuestions(difficulty, 'multiplication');
+      console.log('ProblemService: Used questions count:', usedQuestions.size);
+      
+      // Filter out used questions
+      const availableQuestions = questionBank.filter(q => 
+        !usedQuestions.has(q.questionId)
+      );
+      
+      console.log('ProblemService: Available questions count:', availableQuestions.length);
+      
+      // If no questions available, reset session and use all questions
+      if (availableQuestions.length === 0) {
+        console.log('ProblemService: Resetting session for multiplication', difficulty);
+        this.resetSession(difficulty, 'multiplication');
+        const resetQuestions = questionBank.slice(); // Copy all questions
+        const selectedQuestion = resetQuestions[Math.floor(Math.random() * resetQuestions.length)];
+        this.markQuestionUsed(difficulty, 'multiplication', selectedQuestion.questionId);
+        
+        const problem = {
+          id: `mult_${Date.now()}_${this.currentId++}`,
+          type: 'multiplication',
+          operand1: selectedQuestion.operand1,
+          operand2: selectedQuestion.operand2,
+          answer: selectedQuestion.answer,
+          difficulty: selectedQuestion.difficulty,
+          createdAt: new Date().toISOString()
+        };
+        
+        console.log('ProblemService: Generated multiplication problem (after reset):', problem);
+        this.problems.push(problem);
+        return { ...problem };
+      }
+      
+      // Select random question from available ones
+      const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
       this.markQuestionUsed(difficulty, 'multiplication', selectedQuestion.questionId);
       
       const problem = {
@@ -165,45 +198,66 @@ class ProblemService {
         createdAt: new Date().toISOString()
       };
       
+      console.log('ProblemService: Generated multiplication problem:', problem);
       this.problems.push(problem);
       return { ...problem };
+    } catch (error) {
+      console.error('ProblemService: Error generating multiplication problem:', error);
+      throw error;
     }
-    
-    // Select random question from available ones
-    const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
-    this.markQuestionUsed(difficulty, 'multiplication', selectedQuestion.questionId);
-    
-    const problem = {
-      id: `mult_${Date.now()}_${this.currentId++}`,
-      type: 'multiplication',
-      operand1: selectedQuestion.operand1,
-      operand2: selectedQuestion.operand2,
-      answer: selectedQuestion.answer,
-      difficulty: selectedQuestion.difficulty,
-      createdAt: new Date().toISOString()
-    };
-    
-    this.problems.push(problem);
-    return { ...problem };
   }
 
-  async generateDivision(minDivisor, maxDivisor) {
+async generateDivision(minDivisor, maxDivisor) {
     await delay(200);
     
-    const difficulty = this.getDifficultyFromRange(minDivisor, maxDivisor, 'division');
-    const questionBank = this.questionBanks.division[difficulty];
-    const usedQuestions = this.getUsedQuestions(difficulty, 'division');
-    
-    // Filter out used questions
-    const availableQuestions = questionBank.filter(q => 
-      !usedQuestions.has(q.questionId)
-    );
-    
-    // If no questions available, reset session and use all questions
-    if (availableQuestions.length === 0) {
-      this.resetSession(difficulty, 'division');
-      const resetQuestions = questionBank.slice(); // Copy all questions
-      const selectedQuestion = resetQuestions[Math.floor(Math.random() * resetQuestions.length)];
+    try {
+      console.log('ProblemService: Generating division with range:', minDivisor, 'to', maxDivisor);
+      
+      const difficulty = this.getDifficultyFromRange(minDivisor, maxDivisor, 'division');
+      console.log('ProblemService: Determined difficulty:', difficulty);
+      
+      const questionBank = this.questionBanks.division[difficulty];
+      if (!questionBank || questionBank.length === 0) {
+        throw new Error(`No question bank found for division difficulty: ${difficulty}`);
+      }
+      
+      console.log('ProblemService: Question bank size:', questionBank.length);
+      
+      const usedQuestions = this.getUsedQuestions(difficulty, 'division');
+      console.log('ProblemService: Used questions count:', usedQuestions.size);
+      
+      // Filter out used questions
+      const availableQuestions = questionBank.filter(q => 
+        !usedQuestions.has(q.questionId)
+      );
+      
+      console.log('ProblemService: Available questions count:', availableQuestions.length);
+      
+      // If no questions available, reset session and use all questions
+      if (availableQuestions.length === 0) {
+        console.log('ProblemService: Resetting session for division', difficulty);
+        this.resetSession(difficulty, 'division');
+        const resetQuestions = questionBank.slice(); // Copy all questions
+        const selectedQuestion = resetQuestions[Math.floor(Math.random() * resetQuestions.length)];
+        this.markQuestionUsed(difficulty, 'division', selectedQuestion.questionId);
+        
+        const problem = {
+          id: `div_${Date.now()}_${this.currentId++}`,
+          type: 'division',
+          operand1: selectedQuestion.operand1,
+          operand2: selectedQuestion.operand2,
+          answer: selectedQuestion.answer,
+          difficulty: selectedQuestion.difficulty,
+          createdAt: new Date().toISOString()
+        };
+        
+        console.log('ProblemService: Generated division problem (after reset):', problem);
+        this.problems.push(problem);
+        return { ...problem };
+      }
+      
+      // Select random question from available ones
+      const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
       this.markQuestionUsed(difficulty, 'division', selectedQuestion.questionId);
       
       const problem = {
@@ -216,26 +270,13 @@ class ProblemService {
         createdAt: new Date().toISOString()
       };
       
+      console.log('ProblemService: Generated division problem:', problem);
       this.problems.push(problem);
       return { ...problem };
+    } catch (error) {
+      console.error('ProblemService: Error generating division problem:', error);
+      throw error;
     }
-    
-    // Select random question from available ones
-    const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
-    this.markQuestionUsed(difficulty, 'division', selectedQuestion.questionId);
-    
-    const problem = {
-      id: `div_${Date.now()}_${this.currentId++}`,
-      type: 'division',
-      operand1: selectedQuestion.operand1,
-      operand2: selectedQuestion.operand2,
-      answer: selectedQuestion.answer,
-      difficulty: selectedQuestion.difficulty,
-      createdAt: new Date().toISOString()
-    };
-    
-    this.problems.push(problem);
-    return { ...problem };
   }
 
   async generateAddition(minNumber, maxNumber) {

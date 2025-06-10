@@ -24,15 +24,21 @@ const ProblemSolvingArea = ({
       transition={{ delay: 0.1 }}
       className="space-y-6"
     >
-      <div className="bg-white rounded-2xl shadow-lg border border-surface-200 p-8">
+<div className="bg-white rounded-2xl shadow-lg border border-surface-200 p-8">
         <div className="text-center">
-          <ProblemStatement
-            operand1={currentProblem?.operand1}
-            operand2={currentProblem?.operand2}
-            operator={currentProblem?.operator}
-            problemId={currentProblem?.id}
-          />
-
+          {currentProblem ? (
+            <ProblemStatement
+              operand1={currentProblem.operand1}
+              operand2={currentProblem.operand2}
+              operator={currentProblem.operator}
+              problemId={currentProblem.id}
+            />
+          ) : (
+            <div className="py-8">
+              <div className="text-2xl text-surface-400 mb-2">Loading problem...</div>
+              <div className="text-surface-500">Please wait while we generate your practice problem</div>
+            </div>
+          )}
           <div className="mb-6">
             <AnswerInput
               value={userAnswer}

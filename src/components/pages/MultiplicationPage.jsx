@@ -26,20 +26,44 @@ function MultiplicationPage() {
     hard: { label: 'Hard (1-12)', range: [1, 12], color: 'error' }
   };
 
-  useEffect(() => {
+useEffect(() => {
     generateNewProblem();
   }, [difficulty]);
 
   const generateNewProblem = async () => {
     setLoading(true);
     try {
+      console.log('Generating multiplication problem for difficulty:', difficulty);
       const range = difficulties[difficulty].range;
+      console.log('Using range:', range);
+      
       const problem = await problemService.generateMultiplication(range[0], range[1]);
-      setCurrentProblem({ ...problem, operator: '×' }); // Add operator for ProblemStatement
+      console.log('Generated problem:', problem);
+      
+      if (!problem || problem.operand1 === undefined || problem.operand2 === undefined) {
+        throw new Error('Invalid problem generated');
+      }
+      
+      const problemWithOperator = { ...problem, operator: '×' };
+      setCurrentProblem(problemWithOperator);
+      console.log('Set current problem:', problemWithOperator);
+      
       setUserAnswer('');
       setShowFeedback(false);
     } catch (error) {
-      toast.error('Failed to generate problem');
+      console.error('Error generating multiplication problem:', error);
+      toast.error('Failed to generate problem. Please try again.');
+      
+      // Fallback problem to ensure page always has content
+      const fallbackProblem = {
+        id: `fallback_${Date.now()}`,
+        operand1: 2,
+        operand2: 3,
+        answer: 6,
+        operator: '×',
+        type: 'multiplication'
+      };
+      setCurrentProblem(fallbackProblem);
     } finally {
       setLoading(false);
     }

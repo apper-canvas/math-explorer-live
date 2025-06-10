@@ -26,20 +26,44 @@ function DivisionPage() {
     hard: { label: 'Hard (÷1-12)', range: [1, 12], color: 'error' }
   };
 
-  useEffect(() => {
+useEffect(() => {
     generateNewProblem();
   }, [difficulty]);
 
   const generateNewProblem = async () => {
     setLoading(true);
     try {
+      console.log('Generating division problem for difficulty:', difficulty);
       const range = difficulties[difficulty].range;
+      console.log('Using range:', range);
+      
       const problem = await problemService.generateDivision(range[0], range[1]);
-      setCurrentProblem({ ...problem, operator: '÷' }); // Add operator for ProblemStatement
+      console.log('Generated problem:', problem);
+      
+      if (!problem || problem.operand1 === undefined || problem.operand2 === undefined) {
+        throw new Error('Invalid problem generated');
+      }
+      
+      const problemWithOperator = { ...problem, operator: '÷' };
+      setCurrentProblem(problemWithOperator);
+      console.log('Set current problem:', problemWithOperator);
+      
       setUserAnswer('');
       setShowFeedback(false);
     } catch (error) {
-      toast.error('Failed to generate problem');
+      console.error('Error generating division problem:', error);
+      toast.error('Failed to generate problem. Please try again.');
+      
+      // Fallback problem to ensure page always has content
+      const fallbackProblem = {
+        id: `fallback_${Date.now()}`,
+        operand1: 8,
+        operand2: 2,
+        answer: 4,
+        operator: '÷',
+        type: 'division'
+      };
+      setCurrentProblem(fallbackProblem);
     } finally {
       setLoading(false);
     }
