@@ -10,7 +10,7 @@ import PracticeHeader from '@/components/organisms/PracticeHeader';
 import letterService from '@/services/api/letterService';
 
 const LetterRecognitionPage = () => {
-  const [difficulty, setDifficulty] = useState('Easy');
+  const [difficulty, setDifficulty] = useState('easy');
   const [currentExercise, setCurrentExercise] = useState(null);
   const [exerciseType, setExerciseType] = useState('identification');
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -19,6 +19,12 @@ const LetterRecognitionPage = () => {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState({ correct: 0, total: 0, streak: 0 });
   const [draggedLetter, setDraggedLetter] = useState(null);
+
+  const difficulties = {
+    easy: { label: 'Easy (A-M)', color: 'reading-primary', range: 'A-M' },
+    medium: { label: 'Medium (N-Z)', color: 'reading-secondary', range: 'N-Z' },
+    hard: { label: 'Hard (Mixed)', color: 'reading-accent', range: 'Mixed' }
+  };
 
   const exerciseTypes = [
     { id: 'identification', label: 'Letter ID', icon: '🔍' },
@@ -293,31 +299,27 @@ const LetterRecognitionPage = () => {
         );
 
       default:
-        return null;
+return null;
     }
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <PracticeHeader
-        title="Letter Recognition"
-        subtitle="Master uppercase and lowercase letters"
-        icon="Type"
-      />
+    <div className="min-h-full bg-gradient-to-br from-reading-primary/5 via-white to-reading-primary/10">
+      <div className="container mx-auto px-4 py-6 max-w-6xl">
+        <PracticeHeader
+          title="Letter Recognition"
+          subtitle="Master uppercase and lowercase letters"
+          iconName="Type"
+          iconColorClass="reading-primary"
+          difficulties={difficulties}
+          currentDifficulty={difficulty}
+          onSelectDifficulty={setDifficulty}
+          sessionStats={progress}
+        />
 
-      {/* Controls */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center">
-          <DifficultySelector
-            value={difficulty}
-            onChange={setDifficulty}
-            options={[
-              { value: 'Easy', label: 'Easy (A-M)', color: 'bg-green-500' },
-              { value: 'Medium', label: 'Medium (N-Z)', color: 'bg-yellow-500' },
-              { value: 'Hard', label: 'Hard (Mixed)', color: 'bg-red-500' }
-            ]}
-          />
-
+        {/* Controls */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+          <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center">
           <div className="flex flex-wrap gap-2">
             {exerciseTypes.map((type) => (
               <Button
