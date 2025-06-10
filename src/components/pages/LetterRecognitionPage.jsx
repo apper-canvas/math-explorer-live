@@ -115,8 +115,8 @@ const speakLetter = useCallback((letter) => {
     generateExercise();
   }, [generateExercise]);
 
-  const renderExerciseContent = () => {
-    if (!currentExercise || loading) {
+const renderExerciseContent = () => {
+    if (!currentExercise || loading || !currentExercise.targetLetter) {
       return (
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-reading-primary"></div>
@@ -142,7 +142,7 @@ const speakLetter = useCallback((letter) => {
             </Text>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-md mx-auto">
-              {currentExercise.options.map((option, index) => (
+              {(currentExercise.options || []).map((option, index) => (
                 <motion.button
                   key={index}
                   className={`letter-card p-6 text-4xl font-bold rounded-xl border-2 transition-all ${
@@ -166,7 +166,7 @@ const speakLetter = useCallback((letter) => {
           </div>
         );
 
-      case 'matching':
+case 'matching':
         return (
           <div className="text-center space-y-8">
             <Text size="lg" className="text-surface-700">
@@ -188,7 +188,7 @@ const speakLetter = useCallback((letter) => {
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-md mx-auto">
-              {currentExercise.options.map((option, index) => (
+              {(currentExercise.options || []).map((option, index) => (
                 <motion.button
                   key={index}
                   className={`letter-card p-6 text-4xl font-bold rounded-xl border-2 transition-all ${
@@ -212,7 +212,7 @@ const speakLetter = useCallback((letter) => {
           </div>
         );
 
-      case 'dragdrop':
+case 'dragdrop':
         return (
           <div className="text-center space-y-8">
             <Text size="lg" className="text-surface-700">
@@ -220,7 +220,7 @@ const speakLetter = useCallback((letter) => {
             </Text>
             
             <div className="flex justify-center space-x-8 mb-8">
-              {currentExercise.draggableLetters.map((letter, index) => (
+              {(currentExercise.draggableLetters || []).map((letter, index) => (
                 <motion.div
                   key={index}
                   className="letter-card p-4 text-3xl font-bold bg-white rounded-xl shadow-lg cursor-move border-2 border-surface-200 hover:border-reading-primary"
@@ -237,25 +237,25 @@ const speakLetter = useCallback((letter) => {
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-lg mx-auto">
-              {currentExercise.dropZones.map((zone, index) => (
+              {(currentExercise.dropZones || []).map((zone, index) => (
                 <motion.div
                   key={index}
                   className="drop-zone h-24 border-2 border-dashed border-surface-300 rounded-xl flex items-center justify-center text-surface-500 transition-all hover:border-reading-primary hover:bg-reading-light"
                   onDragOver={handleDragOver}
-                  onDrop={(e) => handleDrop(e, zone.correctLetter)}
+                  onDrop={(e) => handleDrop(e, zone?.correctLetter)}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: index * 0.1 }}
-                  aria-label={`Drop zone for ${zone.label}`}
+                  aria-label={`Drop zone for ${zone?.label || 'zone'}`}
                 >
-                  <Text size="sm" className="font-medium">{zone.label}</Text>
+                  <Text size="sm" className="font-medium">{zone?.label || 'Drop here'}</Text>
                 </motion.div>
               ))}
             </div>
           </div>
         );
 
-      case 'audio':
+case 'audio':
         return (
           <div className="text-center space-y-8">
             <Text size="lg" className="text-surface-700">
@@ -274,7 +274,7 @@ const speakLetter = useCallback((letter) => {
             </motion.button>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-md mx-auto">
-              {currentExercise.options.map((option, index) => (
+              {(currentExercise.options || []).map((option, index) => (
                 <motion.button
                   key={index}
                   className={`letter-card p-6 text-4xl font-bold rounded-xl border-2 transition-all ${
