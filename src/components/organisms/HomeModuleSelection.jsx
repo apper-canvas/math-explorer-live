@@ -22,7 +22,7 @@ const HomeModuleSelection = ({ modules }) => {
     >
       {modules.map((module) => (
         <ModuleCard key={module.id} {...module} />
-      ))}
+))}
     </motion.div>
   );
 };
