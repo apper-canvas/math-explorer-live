@@ -15,7 +15,8 @@ const ProblemSolvingArea = ({
   showFeedback,
   isCorrect,
   handleNumberPadInput,
-  operatorColorClass = 'primary'
+  operatorColorClass = 'primary',
+  problemNumber
 }) => {
   return (
     <motion.div
@@ -26,12 +27,13 @@ const ProblemSolvingArea = ({
     >
 <div className="bg-white rounded-2xl shadow-lg border border-surface-200 p-8">
         <div className="text-center">
-          {currentProblem ? (
+{currentProblem ? (
             <ProblemStatement
               operand1={currentProblem.operand1}
               operand2={currentProblem.operand2}
               operator={currentProblem.operator}
               problemId={currentProblem.id}
+              problemNumber={problemNumber}
             />
           ) : (
             <div className="py-8">

@@ -7,7 +7,7 @@ import ProblemSolvingArea from '@/components/organisms/ProblemSolvingArea';
 import VisualAidSection from '@/components/organisms/VisualAidSection';
 
 function MultiplicationPage() {
-  const [currentProblem, setCurrentProblem] = useState(null);
+const [currentProblem, setCurrentProblem] = useState(null);
   const [userAnswer, setUserAnswer] = useState('');
   const [sessionStats, setSessionStats] = useState({
     correct: 0,
@@ -15,6 +15,7 @@ function MultiplicationPage() {
     streak: 0
   });
   const [difficulty, setDifficulty] = useState('easy');
+  const [problemNumber, setProblemNumber] = useState(1);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [showVisualAid, setShowVisualAid] = useState(true);
@@ -27,6 +28,7 @@ function MultiplicationPage() {
   };
 
 useEffect(() => {
+    setProblemNumber(1); // Reset problem number when difficulty changes
     generateNewProblem();
   }, [difficulty]);
 
@@ -44,7 +46,7 @@ useEffect(() => {
         throw new Error('Invalid problem generated');
       }
       
-      const problemWithOperator = { ...problem, operator: '×' };
+const problemWithOperator = { ...problem, operator: '×' };
       setCurrentProblem(problemWithOperator);
       console.log('Set current problem:', problemWithOperator);
       
@@ -90,8 +92,9 @@ useEffect(() => {
       toast.error(`Not quite! The answer is ${currentProblem.answer}`);
     }
 
-    // Auto-advance after 2 seconds
+// Auto-advance after 2 seconds
     setTimeout(() => {
+      setProblemNumber(prev => prev + 1);
       generateNewProblem();
     }, 2000);
   };
@@ -142,7 +145,7 @@ useEffect(() => {
         />
 
         <div className="grid lg:grid-cols-2 gap-6">
-          <ProblemSolvingArea
+<ProblemSolvingArea
             currentProblem={currentProblem}
             userAnswer={userAnswer}
             setUserAnswer={setUserAnswer}
@@ -152,6 +155,7 @@ useEffect(() => {
             isCorrect={isCorrect}
             handleNumberPadInput={handleNumberPadInput}
             operatorColorClass="accent"
+            problemNumber={problemNumber}
           />
 
           <VisualAidSection
