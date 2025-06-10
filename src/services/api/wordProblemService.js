@@ -5,6 +5,8 @@ class WordProblemService {
     this.problems = [];
     this.currentId = 1;
     this.templates = this.initializeTemplates();
+    this.difficultyQuestionBanks = this.initializeDifficultyBanks();
+    this.sessionTracking = new Map(); // Track used questions per difficulty/operation
   }
 
   initializeTemplates() {
@@ -191,6 +193,77 @@ class WordProblemService {
         ]
       }
     };
+}
+
+  initializeDifficultyBanks() {
+    return {
+      easy: {
+        addition: this.generateDifficultyQuestions('addition', 'easy', 1, 10, 10),
+        subtraction: this.generateDifficultyQuestions('subtraction', 'easy', 1, 10, 10),
+        multiplication: this.generateDifficultyQuestions('multiplication', 'easy', 1, 5, 10),
+        division: this.generateDifficultyQuestions('division', 'easy', 1, 5, 10)
+      },
+      medium: {
+        addition: this.generateDifficultyQuestions('addition', 'medium', 10, 50, 10),
+        subtraction: this.generateDifficultyQuestions('subtraction', 'medium', 10, 50, 10),
+        multiplication: this.generateDifficultyQuestions('multiplication', 'medium', 2, 12, 10),
+        division: this.generateDifficultyQuestions('division', 'medium', 2, 12, 10)
+      },
+      hard: {
+        addition: this.generateDifficultyQuestions('addition', 'hard', 50, 100, 10),
+        subtraction: this.generateDifficultyQuestions('subtraction', 'hard', 50, 100, 10),
+        multiplication: this.generateDifficultyQuestions('multiplication', 'hard', 5, 25, 10),
+        division: this.generateDifficultyQuestions('division', 'hard', 5, 25, 10)
+      }
+    };
+  }
+
+  generateDifficultyQuestions(operation, difficulty, minNum, maxNum, count) {
+    const questions = [];
+    const contexts = ['shopping', 'food', 'sports', 'school', 'animals', 'travel'];
+    
+    for (let i = 0; i < count; i++) {
+      const context = contexts[i % contexts.length];
+      let operand1, operand2, answer;
+      
+      // Generate unique operand combinations for each question
+      switch (operation) {
+        case 'addition':
+          operand1 = minNum + (i * 2) % (maxNum - minNum);
+          operand2 = minNum + ((i * 3) + 1) % (maxNum - minNum);
+          answer = operand1 + operand2;
+          break;
+          
+        case 'subtraction':
+          operand1 = Math.max(minNum + (i * 3), minNum + 5);
+          operand2 = minNum + (i % (operand1 - minNum));
+          answer = operand1 - operand2;
+          break;
+          
+        case 'multiplication':
+          operand1 = Math.max(minNum, minNum + (i % (maxNum - minNum + 1)));
+          operand2 = Math.max(minNum, minNum + ((i + 2) % (maxNum - minNum + 1)));
+          answer = operand1 * operand2;
+          break;
+          
+        case 'division':
+          operand2 = Math.max(minNum, minNum + (i % (maxNum - minNum + 1)));
+          answer = Math.max(minNum, minNum + ((i + 1) % (maxNum - minNum + 1)));
+          operand1 = operand2 * answer;
+          break;
+      }
+      
+      questions.push({
+        questionId: `${operation}_${difficulty}_${i + 1}`,
+        operand1,
+        operand2,
+        answer,
+        context,
+        index: i
+      });
+    }
+    
+    return questions;
   }
 
   getRandomName() {
@@ -198,49 +271,41 @@ class WordProblemService {
     return names[Math.floor(Math.random() * names.length)];
   }
 
-  async generateProblem(parameters) {
+async generateProblem(parameters, usedQuestions = new Set()) {
     await delay(500);
     
     const { operation, context, difficulty, minNumber, maxNumber } = parameters;
     
-    // Generate operands based on operation and difficulty
-    let operand1, operand2, answer;
-    
-    switch (operation) {
-      case 'addition':
-        operand1 = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-        operand2 = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-        answer = operand1 + operand2;
-        break;
-        
-      case 'subtraction':
-        operand1 = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-        operand2 = Math.floor(Math.random() * operand1) + 1; // Ensure positive result
-        answer = operand1 - operand2;
-        break;
-        
-      case 'multiplication':
-        operand1 = Math.floor(Math.random() * Math.min(12, maxNumber - minNumber + 1)) + minNumber;
-        operand2 = Math.floor(Math.random() * Math.min(12, maxNumber - minNumber + 1)) + minNumber;
-        answer = operand1 * operand2;
-        break;
-        
-      case 'division':
-        // Generate division by creating multiplication first
-        operand2 = Math.floor(Math.random() * Math.min(12, maxNumber - minNumber + 1)) + minNumber;
-        answer = Math.floor(Math.random() * Math.min(12, maxNumber - minNumber + 1)) + minNumber;
-        operand1 = operand2 * answer;
-        break;
+    // Get the question bank for this difficulty and operation
+    const questionBank = this.difficultyQuestionBanks[difficulty]?.[operation];
+    if (!questionBank) {
+      throw new Error(`No question bank found for ${difficulty} ${operation}`);
     }
-
+    
+    // Filter out used questions
+    const availableQuestions = questionBank.filter(q => 
+      !usedQuestions.has(`wp_${q.questionId}`)
+    );
+    
+    if (availableQuestions.length === 0) {
+      return null; // No more questions available
+    }
+    
+    // Select a question from available ones
+    const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+    const { operand1, operand2, answer, context: questionContext } = selectedQuestion;
+    
+    // Use the question's context or fallback to parameter context
+    const finalContext = questionContext || context;
+    
     // Get template
-    const templates = this.templates[operation][context] || this.templates[operation].shopping;
-    const template = templates[Math.floor(Math.random() * templates.length)];
+    const templates = this.templates[operation][finalContext] || this.templates[operation].shopping;
+    const template = templates[selectedQuestion.index % templates.length];
     
     // Generate problem text
     const name = this.getRandomName();
-    const item1 = template.items[Math.floor(Math.random() * template.items.length)];
-    const item2 = template.items[Math.floor(Math.random() * template.items.length)];
+    const item1 = template.items[selectedQuestion.index % template.items.length];
+    const item2 = template.items[(selectedQuestion.index + 1) % template.items.length];
     
     let problemText = template.template
       .replace(/{name}/g, name)
@@ -255,13 +320,13 @@ class WordProblemService {
       .replace(/{item2}/g, item2);
 
     // Generate visual description
-    const visualDescription = this.generateVisualDescription(operation, operand1, operand2, answer, context);
+    const visualDescription = this.generateVisualDescription(operation, operand1, operand2, answer, finalContext);
     
     const problem = {
-      id: `wp_${operation}_${Date.now()}_${this.currentId++}`,
+      id: `wp_${selectedQuestion.questionId}`,
       type: 'word_problem',
       operation,
-      context,
+      context: finalContext,
       difficulty,
       text: problemText,
       question: questionText,
@@ -347,13 +412,29 @@ class WordProblemService {
     return true;
   }
 
-  async getByParameters(parameters) {
+async getByParameters(parameters) {
     await delay(200);
     return this.problems.filter(problem => {
       return (!parameters.operation || problem.operation === parameters.operation) &&
              (!parameters.context || problem.context === parameters.context) &&
              (!parameters.difficulty || problem.difficulty === parameters.difficulty);
     });
+  }
+
+  // Get available question count for a difficulty/operation combination
+  getAvailableQuestionCount(difficulty, operation, usedQuestions = new Set()) {
+    const questionBank = this.difficultyQuestionBanks[difficulty]?.[operation];
+    if (!questionBank) return 0;
+    
+    return questionBank.filter(q => 
+      !usedQuestions.has(`wp_${q.questionId}`)
+    ).length;
+  }
+
+  // Reset session tracking for a new session
+  resetSession(difficulty, operation) {
+    const key = `${difficulty}_${operation}`;
+    this.sessionTracking.delete(key);
   }
 }
 

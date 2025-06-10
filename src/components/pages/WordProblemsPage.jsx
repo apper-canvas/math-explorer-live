@@ -13,7 +13,7 @@ import StatCard from '@/components/molecules/StatCard';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function WordProblemsPage() {
-  const [currentProblem, setCurrentProblem] = useState(null);
+const [currentProblem, setCurrentProblem] = useState(null);
   const [userAnswer, setUserAnswer] = useState('');
   const [sessionStats, setSessionStats] = useState({
     correct: 0,
@@ -27,6 +27,8 @@ function WordProblemsPage() {
     minNumber: 1,
     maxNumber: 10
   });
+  const [usedQuestions, setUsedQuestions] = useState(new Set());
+  const [availableQuestions, setAvailableQuestions] = useState(10);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [showVisualAid, setShowVisualAid] = useState(true);
@@ -48,14 +50,21 @@ function WordProblemsPage() {
     }
   }, [parameters]);
 
-  const generateNewProblem = async () => {
+const generateNewProblem = async () => {
     setLoading(true);
     try {
-      const problem = await wordProblemService.generateProblem(parameters);
-      setCurrentProblem(problem);
-      setUserAnswer('');
-      setShowFeedback(false);
-      setShowParameters(false);
+      const problem = await wordProblemService.generateProblem(parameters, usedQuestions);
+      if (problem) {
+        setCurrentProblem(problem);
+        setUserAnswer('');
+        setShowFeedback(false);
+        setShowParameters(false);
+        setUsedQuestions(prev => new Set([...prev, problem.id]));
+        setAvailableQuestions(prev => Math.max(0, prev - 1));
+      } else {
+        toast.info('All questions for this difficulty level completed! Try a different difficulty.');
+        setShowParameters(true);
+      }
     } catch (error) {
       toast.error('Failed to generate word problem');
     } finally {
@@ -89,10 +98,13 @@ function WordProblemsPage() {
     generateNewProblem();
   };
 
-  const handleNewParameters = () => {
+const handleNewParameters = () => {
     setShowParameters(true);
     setCurrentProblem(null);
     setShowFeedback(false);
+    // Reset question tracking when parameters change
+    setUsedQuestions(new Set());
+    setAvailableQuestions(10);
   };
 
   const handleKeyPress = (e) => {
@@ -130,9 +142,9 @@ function WordProblemsPage() {
           </Text>
         </div>
 
-        {/* Session Stats */}
+{/* Session Stats */}
         {sessionStats.total > 0 && (
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-4 gap-4 mb-6">
             <StatCard
               icon="Target"
               label="Accuracy"
@@ -153,6 +165,13 @@ function WordProblemsPage() {
               value={`${sessionStats.correct}/${sessionStats.total}`}
               bgColor="primary/10"
               textColor="primary"
+            />
+            <StatCard
+              icon="List"
+              label="Remaining"
+              value={`${availableQuestions}/10`}
+              bgColor="accent/10"
+              textColor="accent"
             />
           </div>
         )}
