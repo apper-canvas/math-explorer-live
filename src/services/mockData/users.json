@@ -1,0 +1,82 @@
+{
+  "users": [
+    {
+      "id": "user-1",
+      "username": "demo",
+      "password": "demo123",
+      "email": "demo@storyexplorer.com",
+      "firstName": "Demo",
+      "lastName": "User",
+      "age": 8,
+      "readingLevel": "intermediate",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=demo",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "preferences": {
+        "theme": "light",
+        "autoplay": true,
+        "fontSize": "medium",
+        "narrationSpeed": "normal"
+      },
+      "stats": {
+        "storiesRead": 12,
+        "totalReadingTime": 480,
+        "streakDays": 7,
+        "favoriteCategory": "adventures",
+        "quizzesTaken": 15,
+        "averageQuizScore": 85
+      }
+    },
+    {
+      "id": "user-2", 
+      "username": "alice",
+      "password": "alice123",
+      "email": "alice@example.com",
+      "firstName": "Alice",
+      "lastName": "Wonder",
+      "age": 6,
+      "readingLevel": "beginner",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=alice",
+      "createdAt": "2024-02-01T14:30:00Z",
+      "preferences": {
+        "theme": "light",
+        "autoplay": true,
+        "fontSize": "large",
+        "narrationSpeed": "slow"
+      },
+      "stats": {
+        "storiesRead": 5,
+        "totalReadingTime": 150,
+        "streakDays": 3,
+        "favoriteCategory": "fairy-tales",
+        "quizzesTaken": 5,
+        "averageQuizScore": 78
+      }
+    },
+    {
+      "id": "user-3",
+      "username": "max",
+      "password": "max123", 
+      "email": "max@example.com",
+      "firstName": "Max",
+      "lastName": "Explorer",
+      "age": 10,
+      "readingLevel": "advanced",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=max",
+      "createdAt": "2024-01-20T09:15:00Z",
+      "preferences": {
+        "theme": "dark",
+        "autoplay": false,
+        "fontSize": "medium",
+        "narrationSpeed": "fast"
+      },
+      "stats": {
+        "storiesRead": 25,
+        "totalReadingTime": 750,
+        "streakDays": 14,
+        "favoriteCategory": "mystery",
+        "quizzesTaken": 30,
+        "averageQuizScore": 92
+      }
+    }
+  ]
+}

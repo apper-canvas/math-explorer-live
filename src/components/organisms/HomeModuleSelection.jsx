@@ -20,9 +20,9 @@ const HomeModuleSelection = ({ modules }) => {
       animate="visible"
       className="grid md:grid-cols-2 gap-6 mb-8"
     >
-      {modules.map((module) => (
+{modules.map((module) => (
         <ModuleCard key={module.id} {...module} />
-))}
+      ))}
     </motion.div>
   );
 };

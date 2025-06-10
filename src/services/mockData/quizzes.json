@@ -1,0 +1,159 @@
+{
+  "quizzes": [
+    {
+      "id": "quiz-1",
+      "storyId": "story-1",
+      "title": "The Magic Forest Adventure Quiz",
+      "description": "Test your understanding of Emma's magical journey!",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "multiple-choice",
+          "question": "What did Emma find in the forest?",
+          "options": [
+            "A golden path made of leaves",
+            "A hidden treasure chest", 
+            "A lost puppy",
+            "A magical wand"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Emma discovered a shimmering path made of golden leaves that led deeper into the forest."
+        },
+        {
+          "id": "q2", 
+          "type": "multiple-choice",
+          "question": "Who was the first magical creature Emma met?",
+          "options": [
+            "A wise owl",
+            "A talking rabbit named Whiskers",
+            "A friendly dragon",
+            "A fairy godmother"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Whiskers the rabbit was the first creature to welcome Emma to the Magic Forest."
+        },
+        {
+          "id": "q3",
+          "type": "true-false", 
+          "question": "Emma was scared when she first saw the golden path.",
+          "correctAnswer": false,
+          "explanation": "Emma was curious and brave, which is why she decided to follow the mysterious path."
+        },
+        {
+          "id": "q4",
+          "type": "multiple-choice",
+          "question": "What did Whiskers say when he first met Emma?",
+          "options": [
+            "Go away, this forest is dangerous!",
+            "Welcome to the Magic Forest!",
+            "Are you lost, little girl?",
+            "Follow me quickly!"
+          ],
+          "correctAnswer": 1,
+          "explanation": "Whiskers warmly welcomed Emma to the Magic Forest and said he had been waiting for someone brave like her."
+        },
+        {
+          "id": "q5",
+          "type": "multiple-choice",
+          "question": "What choice did Emma have to make when she found the golden path?",
+          "options": [
+            "Follow it or turn back home",
+            "Pick up the golden leaves", 
+            "Call for help",
+            "Wait for someone else"
+          ],
+          "correctAnswer": 0,
+          "explanation": "Emma had to choose between following the mysterious golden path or turning back to the safety of home."
+        }
+      ]
+    },
+    {
+      "id": "quiz-2",
+      "storyId": "story-2", 
+      "title": "The Little Dragon's Big Heart Quiz",
+      "description": "How well did you understand Spark's journey of self-discovery?",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "multiple-choice",
+          "question": "What made Spark different from other dragons?",
+          "options": [
+            "He was much smaller",
+            "He couldn't breathe fire, only colored smoke rings",
+            "He was afraid of flying",
+            "He didn't like treasure"
+          ],
+          "correctAnswer": 1,
+          "explanation": "While other dragons breathed fire, Spark could only create beautiful colored smoke rings."
+        },
+        {
+          "id": "q2",
+          "type": "true-false",
+          "question": "Spark was initially happy about being different.",
+          "correctAnswer": false,
+          "explanation": "Spark felt sad about being different at first and wanted to be like the other dragons."
+        },
+        {
+          "id": "q3",
+          "type": "multiple-choice",
+          "question": "What is the main lesson of Spark's story?",
+          "options": [
+            "Practice makes perfect",
+            "Being different makes you special",
+            "Dragons should breathe fire",
+            "Always listen to others"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The story teaches us that our differences make us unique and special, not something to be ashamed of."
+        }
+      ]
+    },
+    {
+      "id": "quiz-3",
+      "storyId": "story-3",
+      "title": "The Mystery of the Missing Crown Quiz", 
+      "description": "Test your detective skills with Detective Lucy's case!",
+      "questions": [
+        {
+          "id": "q1",
+          "type": "multiple-choice",
+          "question": "What was stolen from the royal palace?",
+          "options": [
+            "The royal scepter",
+            "The golden crown with jewels",
+            "The queen's necklace", 
+            "The royal portrait"
+          ],
+          "correctAnswer": 1,
+          "explanation": "The beautiful golden crown with sparkling jewels was missing from the royal palace."
+        },
+        {
+          "id": "q2",
+          "type": "multiple-choice",
+          "question": "When was the coronation ceremony scheduled?",
+          "options": [
+            "Next week",
+            "Tomorrow",
+            "In just a few hours",
+            "Next month"
+          ],
+          "correctAnswer": 2,
+          "explanation": "The coronation ceremony was only hours away, making the mystery urgent to solve."
+        },
+        {
+          "id": "q3",
+          "type": "multiple-choice",
+          "question": "What did Detective Lucy need to do first?",
+          "options": [
+            "Question the suspects",
+            "Search the entire palace",
+            "Investigate the crime scene",
+            "Call for backup"
+          ],
+          "correctAnswer": 2,
+          "explanation": "A good detective always starts by carefully examining the crime scene for clues."
+        }
+      ]
+    }
+  ]
+}

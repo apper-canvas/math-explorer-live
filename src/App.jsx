@@ -4,12 +4,13 @@ import Layout from './Layout';
 import HomePage from '@/components/pages/HomePage';
 import NotFoundPage from '@/components/pages/NotFoundPage';
 import { routeArray } from './config/routes';
-
+import { AuthProvider } from '@/contexts/AuthContext';
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
 <Route index element={<HomePage />} />
           {routeArray.map(route => (
             <Route 
@@ -32,9 +33,10 @@ function App() {
         draggable
         pauseOnHover
         theme="light"
-        className="z-[9999]"
+className="z-[9999]"
       />
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

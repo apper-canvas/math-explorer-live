@@ -1,0 +1,214 @@
+{
+  "stories": [
+    {
+      "id": "story-1",
+      "title": "The Magic Forest Adventure",
+      "description": "Join Emma as she discovers a hidden world of talking animals and magical creatures in an enchanted forest.",
+      "category": "adventures",
+      "readingLevel": "beginner",
+      "estimatedDuration": 8,
+      "featured": true,
+      "coverImage": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop",
+      "author": "Sarah Johnson",
+      "narrator": "Emma Watson",
+      "audioUrl": "/audio/magic-forest.mp3",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "The Hidden Path",
+          "content": "Emma was walking through the woods behind her grandmother's house when she noticed something strange. A shimmering path made of golden leaves appeared before her, leading deeper into the forest than she had ever gone before.",
+          "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop",
+          "choices": [
+            {
+              "id": "choice-1a",
+              "text": "Follow the golden path",
+              "nextChapter": 2,
+              "consequence": "Emma discovers the talking rabbit"
+            },
+            {
+              "id": "choice-1b", 
+              "text": "Turn back home",
+              "nextChapter": "1b",
+              "consequence": "Emma misses the adventure but stays safe"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "The Talking Rabbit",
+          "content": "As Emma followed the golden path, a small white rabbit hopped out from behind a tree. 'Welcome to the Magic Forest!' said the rabbit with a friendly smile. 'I'm Whiskers, and I've been waiting for someone brave like you.'",
+          "image": "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600&h=400&fit=crop",
+          "choices": [
+            {
+              "id": "choice-2a",
+              "text": "Ask Whiskers about the forest",
+              "nextChapter": 3,
+              "consequence": "Learn about the forest's magic"
+            },
+            {
+              "id": "choice-2b",
+              "text": "Follow Whiskers quietly",
+              "nextChapter": 4,
+              "consequence": "Discover the secret grove"
+            }
+          ]
+        }
+      ],
+      "themes": ["friendship", "courage", "discovery"],
+      "ageRange": "5-8",
+      "tags": ["magic", "forest", "animals", "adventure"]
+    },
+    {
+      "id": "story-2",
+      "title": "The Little Dragon's Big Heart",
+      "description": "A small dragon learns that being different makes you special in this heartwarming tale about friendship and acceptance.",
+      "category": "friendship",
+      "readingLevel": "beginner",
+      "estimatedDuration": 6,
+      "featured": true,
+      "coverImage": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+      "author": "Michael Chen",
+      "narrator": "David Attenborough",
+      "audioUrl": "/audio/little-dragon.mp3",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "The Different Dragon",
+          "content": "In a land where all dragons were big and fierce, there lived a little dragon named Spark who was different. While other dragons breathed fire, Spark could only make pretty colored smoke rings.",
+          "image": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
+          "choices": [
+            {
+              "id": "choice-1a",
+              "text": "Practice breathing fire harder",
+              "nextChapter": 2,
+              "consequence": "Spark gets tired but doesn't give up"
+            },
+            {
+              "id": "choice-1b",
+              "text": "Embrace being different",
+              "nextChapter": 3,
+              "consequence": "Spark discovers his unique gift"
+            }
+          ]
+        }
+      ],
+      "themes": ["self-acceptance", "friendship", "uniqueness"],
+      "ageRange": "4-7",
+      "tags": ["dragon", "friendship", "differences", "magic"]
+    },
+    {
+      "id": "story-3",
+      "title": "The Mystery of the Missing Crown",
+      "description": "Detective Lucy must solve the case of the missing royal crown before the kingdom's biggest celebration.",
+      "category": "mystery",
+      "readingLevel": "intermediate",
+      "estimatedDuration": 12,
+      "featured": false,
+      "coverImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop",
+      "author": "Detective Stories Inc.",
+      "narrator": "Benedict Cumberbatch",
+      "audioUrl": "/audio/missing-crown.mp3",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "The Crime Scene",
+          "content": "Detective Lucy arrived at the royal palace to find chaos. The beautiful golden crown with sparkling jewels was nowhere to be found, and the coronation ceremony was only hours away!",
+          "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
+          "choices": [
+            {
+              "id": "choice-1a",
+              "text": "Interview the palace guards",
+              "nextChapter": 2,
+              "consequence": "Discover important clues about the theft"
+            },
+            {
+              "id": "choice-1b",
+              "text": "Examine the crown's display case",
+              "nextChapter": 3,
+              "consequence": "Find fingerprints and other evidence"
+            }
+          ]
+        }
+      ],
+      "themes": ["problem-solving", "deduction", "perseverance"],
+      "ageRange": "7-10",
+      "tags": ["mystery", "detective", "crown", "palace"]
+    },
+    {
+      "id": "story-4",
+      "title": "Cinderella's New Beginning",
+      "description": "The classic tale of Cinderella retold with modern twists and interactive choices that change the story.",
+      "category": "fairy-tales",
+      "readingLevel": "intermediate",
+      "estimatedDuration": 10,
+      "featured": true,
+      "coverImage": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
+      "author": "Classic Tales Reimagined",
+      "narrator": "Emma Stone",
+      "audioUrl": "/audio/cinderella.mp3",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "The Invitation",
+          "content": "Cinderella received an invitation to the royal ball, but her stepmother had other plans. 'You must clean the entire house before you can even think about going,' she said with a mean smile.",
+          "image": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop",
+          "choices": [
+            {
+              "id": "choice-1a",
+              "text": "Ask the fairy godmother for help",
+              "nextChapter": 2,
+              "consequence": "Receive magical assistance"
+            },
+            {
+              "id": "choice-1b",
+              "text": "Rally the mice friends to help",
+              "nextChapter": 3,
+              "consequence": "Work together with animal friends"
+            }
+          ]
+        }
+      ],
+      "themes": ["kindness", "perseverance", "magic"],
+      "ageRange": "6-9",
+      "tags": ["fairy-tale", "magic", "ball", "kindness"]
+    },
+    {
+      "id": "story-5",
+      "title": "The Space Explorer's Journey",
+      "description": "Captain Alex embarks on an incredible journey through the galaxy, meeting alien friends and discovering new worlds.",
+      "category": "adventures",
+      "readingLevel": "advanced",
+      "estimatedDuration": 15,
+      "featured": false,
+      "coverImage": "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=400&h=300&fit=crop",
+      "author": "Sci-Fi Adventures",
+      "narrator": "Neil deGrasse Tyson",
+      "audioUrl": "/audio/space-explorer.mp3",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "Launch Day",
+          "content": "Captain Alex stood in front of the shiny spaceship, ready for the biggest adventure of their life. The mission: explore three unknown planets and make contact with any friendly aliens they might find.",
+          "image": "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=600&h=400&fit=crop",
+          "choices": [
+            {
+              "id": "choice-1a",
+              "text": "Head to the colorful planet first",
+              "nextChapter": 2,
+              "consequence": "Meet the rainbow creatures"
+            },
+            {
+              "id": "choice-1b",
+              "text": "Explore the ice planet",
+              "nextChapter": 3,
+              "consequence": "Discover crystal cities"
+            }
+          ]
+        }
+      ],
+      "themes": ["exploration", "friendship", "curiosity"],
+      "ageRange": "8-12",
+      "tags": ["space", "aliens", "adventure", "science"]
+    }
+  ]
+}

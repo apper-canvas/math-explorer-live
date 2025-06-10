@@ -1,11 +1,11 @@
 import HomePage from '@/components/pages/HomePage';
-import MultiplicationPage from '@/components/pages/MultiplicationPage';
-import DivisionPage from '@/components/pages/DivisionPage';
-import ProgressPage from '@/components/pages/ProgressPage';
-import WordProblemsPage from '@/components/pages/WordProblemsPage';
+import StoriesPage from '@/components/pages/StoriesPage';
+import StoryPlayerPage from '@/components/pages/StoryPlayerPage';
+import LibraryPage from '@/components/pages/LibraryPage';
+import ReadingProgressPage from '@/components/pages/ReadingProgressPage';
+import ProfilePage from '@/components/pages/ProfilePage';
 import SettingsPage from '@/components/pages/SettingsPage';
-import LetterRecognitionPage from '@/components/pages/LetterRecognitionPage';
-import SentenceBuildingPage from '@/components/pages/SentenceBuildingPage';
+import QuizPage from '@/components/pages/QuizPage';
 
 export const routes = {
   home: {
@@ -15,47 +15,49 @@ export const routes = {
     icon: 'Home',
     component: HomePage
   },
-  multiplication: {
-    id: 'multiplication',
-    label: 'Multiplication',
-    path: '/multiplication',
-    icon: 'X',
-    component: MultiplicationPage
+  stories: {
+    id: 'stories',
+    label: 'Stories',
+    path: '/stories',
+    icon: 'Book',
+    component: StoriesPage
   },
-  division: {
-    id: 'division',
-    label: 'Division',
-path: '/division',
-    icon: 'Divide',
-    component: DivisionPage
+  library: {
+    id: 'library',
+    label: 'Library',
+    path: '/library',
+    icon: 'Library',
+    component: LibraryPage
   },
-  wordproblems: {
-    id: 'wordproblems',
-    label: 'Word Problems',
-    path: '/word-problems',
-    icon: 'BookOpen',
-    component: WordProblemsPage
+  'story-player': {
+    id: 'story-player',
+    label: 'Story Player',
+    path: '/story/:storyId',
+    icon: 'Play',
+    component: StoryPlayerPage,
+    hideFromNav: true
   },
-  letterrecognition: {
-    id: 'letterrecognition',
-    label: 'Letter Recognition',
-    path: '/letter-recognition',
-    icon: 'Type',
-    component: LetterRecognitionPage
-  },
-  sentencebuilding: {
-    id: 'sentencebuilding',
-    label: 'Sentence Building',
-    path: '/sentence-building',
-    icon: 'Edit3',
-    component: SentenceBuildingPage
+  quiz: {
+    id: 'quiz',
+    label: 'Quiz',
+    path: '/quiz/:storyId',
+    icon: 'HelpCircle',
+    component: QuizPage,
+    hideFromNav: true
   },
   progress: {
     id: 'progress',
-    label: 'Progress',
+    label: 'Reading Progress',
     path: '/progress',
     icon: 'TrendingUp',
-    component: ProgressPage
+    component: ReadingProgressPage
+  },
+  profile: {
+    id: 'profile',
+    label: 'Profile',
+    path: '/profile',
+    icon: 'User',
+    component: ProfilePage
   },
   settings: {
     id: 'settings',

@@ -5,15 +5,18 @@ import DifficultySelector from '@/components/molecules/DifficultySelector';
 import StatValue from '@/components/atoms/StatValue';
 import Text from '@/components/atoms/Text';
 
-const PracticeHeader = ({ 
+const StoryHeader = ({ 
   title, 
   subtitle, 
   iconName, 
-  iconColorClass, 
+  iconColorClass = 'reading-primary', 
+  readingLevel,
+  onLevelChange,
+  storyStats,
+  showDifficulty = false,
   difficulties, 
   currentDifficulty, 
-  onSelectDifficulty, 
-  sessionStats 
+  onSelectDifficulty
 }) => {
   return (
     <motion.div
@@ -33,25 +36,27 @@ const PracticeHeader = ({
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-6">
-            <DifficultySelector
-              difficulties={difficulties}
-              currentDifficulty={currentDifficulty}
-              onSelectDifficulty={onSelectDifficulty}
-/>
+<div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-6">
+            {showDifficulty && (
+              <DifficultySelector
+                difficulties={difficulties}
+                currentDifficulty={currentDifficulty}
+                onSelectDifficulty={onSelectDifficulty}
+              />
+            )}
 
-            <div className="flex items-center space-x-4 text-sm">
+<div className="flex items-center space-x-4 text-sm">
               <div className="text-center">
-                <StatValue value={sessionStats?.correct || 0} colorClass={`text-${iconColorClass}`} />
-                <Text type="div" className="text-surface-500">Correct</Text>
+                <StatValue value={storyStats?.storiesRead || 0} colorClass={`text-${iconColorClass}`} />
+                <Text type="div" className="text-surface-500">Stories Read</Text>
               </div>
               <div className="text-center">
-                <StatValue value={sessionStats?.total || 0} colorClass="text-surface-600" />
-                <Text type="div" className="text-surface-500">Total</Text>
+                <StatValue value={storyStats?.quizScore || 0} colorClass="text-surface-600" />
+                <Text type="div" className="text-surface-500">Quiz Score</Text>
               </div>
               <div className="text-center">
-                <StatValue value={sessionStats?.streak || 0} colorClass="text-warning" />
-                <Text type="div" className="text-surface-500">Streak</Text>
+                <StatValue value={storyStats?.readingStreak || 0} colorClass="text-warning" />
+                <Text type="div" className="text-surface-500">Reading Streak</Text>
               </div>
             </div>
           </div>
@@ -61,4 +66,8 @@ const PracticeHeader = ({
   );
 };
 
-export default PracticeHeader;
+// Keep PracticeHeader as alias for backward compatibility
+const PracticeHeader = StoryHeader;
+
+export default StoryHeader;
+export { PracticeHeader };
