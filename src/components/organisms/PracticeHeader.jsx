@@ -38,19 +38,19 @@ const PracticeHeader = ({
               difficulties={difficulties}
               currentDifficulty={currentDifficulty}
               onSelectDifficulty={onSelectDifficulty}
-            />
+/>
 
             <div className="flex items-center space-x-4 text-sm">
               <div className="text-center">
-                <StatValue value={sessionStats.correct} colorClass={`text-${iconColorClass}`} />
+                <StatValue value={sessionStats?.correct || 0} colorClass={`text-${iconColorClass}`} />
                 <Text type="div" className="text-surface-500">Correct</Text>
               </div>
               <div className="text-center">
-                <StatValue value={sessionStats.total} colorClass="text-surface-600" />
+                <StatValue value={sessionStats?.total || 0} colorClass="text-surface-600" />
                 <Text type="div" className="text-surface-500">Total</Text>
               </div>
               <div className="text-center">
-                <StatValue value={sessionStats.streak} colorClass="text-warning" />
+                <StatValue value={sessionStats?.streak || 0} colorClass="text-warning" />
                 <Text type="div" className="text-surface-500">Streak</Text>
               </div>
             </div>
