@@ -1,0 +1,85 @@
+[
+  {
+    "id": "session_1",
+    "problems": [
+      {
+        "id": "problem_1",
+        "type": "multiplication",
+        "operand1": 3,
+        "operand2": 4,
+        "answer": 12,
+        "difficulty": "easy"
+      },
+      {
+        "id": "problem_2",
+        "type": "division",
+        "operand1": 15,
+        "operand2": 3,
+        "answer": 5,
+        "difficulty": "easy"
+      }
+    ],
+    "startTime": "2024-01-15T10:00:00Z",
+    "completedProblems": 2,
+    "correctAnswers": 2,
+    "currentStreak": 2
+  },
+  {
+    "id": "session_2",
+    "problems": [
+      {
+        "id": "problem_3",
+        "type": "multiplication",
+        "operand1": 7,
+        "operand2": 8,
+        "answer": 56,
+        "difficulty": "medium"
+      },
+      {
+        "id": "problem_4",
+        "type": "division",
+        "operand1": 42,
+        "operand2": 6,
+        "answer": 7,
+        "difficulty": "medium"
+      },
+      {
+        "id": "problem_5",
+        "type": "multiplication",
+        "operand1": 9,
+        "operand2": 6,
+        "answer": 54,
+        "difficulty": "medium"
+      }
+    ],
+    "startTime": "2024-01-15T14:30:00Z",
+    "completedProblems": 3,
+    "correctAnswers": 2,
+    "currentStreak": 1
+  },
+  {
+    "id": "session_3",
+    "problems": [
+      {
+        "id": "problem_6",
+        "type": "division",
+        "operand1": 144,
+        "operand2": 12,
+        "answer": 12,
+        "difficulty": "hard"
+      },
+      {
+        "id": "problem_7",
+        "type": "multiplication",
+        "operand1": 11,
+        "operand2": 12,
+        "answer": 132,
+        "difficulty": "hard"
+      }
+    ],
+    "startTime": "2024-01-16T09:15:00Z",
+    "completedProblems": 2,
+    "correctAnswers": 1,
+    "currentStreak": 0
+  }
+]
