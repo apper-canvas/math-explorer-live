@@ -5,11 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
+extend: {
       colors: {
         primary: '#5B4CDB',
         secondary: '#FF6B6B',
         accent: '#4ECDC4',
+        lightBlue: '#ADD8E6',
         surface: {
           50: '#f8fafc',
           100: '#f1f5f9',
@@ -22,7 +23,7 @@ export default {
           800: '#1e293b',
           900: '#0f172a'
         },
-success: '#51CF66',
+        success: '#51CF66',
         warning: '#FFD93D',
         error: '#FF6B6B',
         info: '#339AF0',

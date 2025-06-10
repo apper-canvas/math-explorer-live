@@ -26,8 +26,8 @@ function HomePage() {
     }
   ];
 
-  return (
-    <div className="min-h-full bg-gradient-to-br from-primary/5 via-white to-accent/5">
+return (
+    <div className="min-h-full bg-gradient-to-br from-lightBlue/30 via-lightBlue/10 to-white">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <HomeHero />
         <HomeModuleSelection modules={modules} />

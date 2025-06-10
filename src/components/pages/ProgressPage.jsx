@@ -50,8 +50,8 @@ function ProgressPage() {
   }
 
   if (error) {
-    return (
-      <div className="min-h-full bg-gradient-to-br from-primary/5 via-white to-info/5 flex items-center justify-center">
+return (
+      <div className="min-h-full bg-gradient-to-br from-lightBlue/20 via-lightBlue/5 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 bg-error rounded-full flex items-center justify-center mb-4">
             <ApperIcon name="AlertCircle" className="w-8 h-8 text-white" />
@@ -133,8 +133,8 @@ function ProgressPage() {
     }
   ];
 
-  return (
-    <div className="min-h-full bg-gradient-to-br from-primary/5 via-white to-info/5">
+return (
+    <div className="min-h-full bg-gradient-to-br from-lightBlue/20 via-lightBlue/5 to-white">
       <div className="container mx-auto px-4 py-6 max-w-6xl">
         <ProgressHeader />
         <ProgressStatsDisplay stats={stats} />

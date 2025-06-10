@@ -130,8 +130,8 @@ const problemWithOperator = { ...problem, operator: '×' };
     );
   }
 
-  return (
-    <div className="min-h-full bg-gradient-to-br from-accent/5 via-white to-accent/10">
+return (
+    <div className="min-h-full bg-gradient-to-br from-lightBlue/20 via-lightBlue/5 to-white">
       <div className="container mx-auto px-4 py-6 max-w-6xl">
         <PracticeHeader
           title="Multiplication Practice"

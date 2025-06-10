@@ -126,8 +126,8 @@ const handleNewParameters = () => {
     );
   }
 
-  return (
-    <div className={`min-h-full bg-gradient-to-br from-${currentConfig.color}/5 via-white to-${currentConfig.color}/10`}>
+return (
+    <div className="min-h-full bg-gradient-to-br from-lightBlue/20 via-lightBlue/5 to-white">
       <div className="container mx-auto px-4 py-6 max-w-6xl">
         {/* Header */}
         <div className="text-center mb-8">
