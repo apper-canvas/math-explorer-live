@@ -14,7 +14,7 @@ function HomePage() {
       color: 'accent',
       bgGradient: 'from-accent to-accent/80',
       path: '/multiplication'
-    },
+},
     {
       id: 'division',
       title: 'Division',
@@ -23,10 +23,28 @@ function HomePage() {
       color: 'secondary',
       bgGradient: 'from-secondary to-secondary/80',
       path: '/division'
+    },
+    {
+      id: "letter-recognition",
+      title: "Letter Recognition",
+      description: "Learn letter recognition, phonics, and reading fundamentals",
+      icon: "Type",
+      color: 'reading-primary',
+      bgGradient: "from-reading-primary to-reading-secondary",
+      path: "/letter-recognition"
+    },
+    {
+      id: "sentence-building",
+      title: "Sentence Building",
+      description: "Construct sentences using phonics and sight words",
+      icon: "Edit3",
+      color: 'reading-secondary',
+      bgGradient: "from-reading-secondary to-reading-accent",
+      path: "/sentence-building"
     }
   ];
 
-return (
+  return (
     <div className="min-h-full bg-gradient-to-br from-lightBlue/30 via-lightBlue/10 to-white">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <HomeHero />

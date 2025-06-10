@@ -5,6 +5,8 @@ import ProgressPage from '@/components/pages/ProgressPage';
 import WordProblemsPage from '@/components/pages/WordProblemsPage';
 import SettingsPage from '@/components/pages/SettingsPage';
 import LetterRecognitionPage from '@/components/pages/LetterRecognitionPage';
+import SentenceBuildingPage from '@/components/pages/SentenceBuildingPage';
+
 export const routes = {
   home: {
     id: 'home',
@@ -23,10 +25,10 @@ export const routes = {
   division: {
     id: 'division',
     label: 'Division',
-    path: '/division',
+path: '/division',
     icon: 'Divide',
     component: DivisionPage
-},
+  },
   wordproblems: {
     id: 'wordproblems',
     label: 'Word Problems',
@@ -41,7 +43,14 @@ export const routes = {
     icon: 'Type',
     component: LetterRecognitionPage
   },
-progress: {
+  sentencebuilding: {
+    id: 'sentencebuilding',
+    label: 'Sentence Building',
+    path: '/sentence-building',
+    icon: 'Edit3',
+    component: SentenceBuildingPage
+  },
+  progress: {
     id: 'progress',
     label: 'Progress',
     path: '/progress',

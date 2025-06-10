@@ -67,5 +67,43 @@ body {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+  
+  /* Sentence Building Specific Styles */
+  .word-card {
+    @apply transition-all duration-300 ease-out hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-reading-primary cursor-move;
+  }
+  
+  .word-dragging {
+    @apply transform rotate-2 shadow-xl z-50 opacity-90;
+  }
+  
+  .sentence-drop-zone {
+    @apply min-h-[60px] border-2 border-dashed border-surface-300 rounded-lg p-3 transition-all duration-200;
+  }
+  
+  .sentence-drop-zone-active {
+    @apply bg-reading-light border-reading-primary shadow-md;
+  }
+  
+  .sentence-drop-zone-valid {
+    @apply bg-green-50 border-green-400 shadow-lg;
+  }
+  
+  .sentence-drop-zone-invalid {
+    @apply bg-red-50 border-red-400 shadow-lg animate-pulse;
+  }
+  
+  .sentence-complete {
+    @apply bg-gradient-to-r from-green-50 to-green-100 border-green-300 shadow-lg;
+  }
+  
+  /* Grammar feedback styles */
+  .grammar-suggestion {
+    @apply bg-blue-50 border-blue-300 text-blue-700 rounded-md px-2 py-1 text-sm;
+  }
+  
+  .error-highlight {
+    @apply bg-red-100 border-red-300 text-red-700;
   }
 }

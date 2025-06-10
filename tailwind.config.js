@@ -39,14 +39,17 @@ primary: '#5B4CDB',
         display: ['Fredoka One', 'cursive'],
         sans: ['Plus Jakarta Sans', 'ui-sans-serif', 'system-ui'],
         heading: ['Plus Jakarta Sans', 'ui-sans-serif', 'system-ui']
-      },
+},
       animation: {
         'pulse-success': 'pulse-success 0.3s ease-out',
         'bounce-in': 'bounce-in 0.3s ease-out',
         'celebration': 'celebration 0.5s ease-out',
         'letter-bounce': 'letter-bounce 0.4s ease-out',
         'drag-hover': 'drag-hover 0.2s ease-in-out',
-        'drop-success': 'drop-success 0.3s ease-out'
+        'drop-success': 'drop-success 0.3s ease-out',
+        'word-slide': 'word-slide 0.3s ease-out',
+        'sentence-build': 'sentence-build 0.4s ease-out',
+        'feedback-pulse': 'feedback-pulse 0.5s ease-in-out'
       },
       keyframes: {
         'pulse-success': {
@@ -76,10 +79,24 @@ primary: '#5B4CDB',
           '0%': { transform: 'scale(1)', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' },
           '100%': { transform: 'scale(1.05)', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }
         },
-        'drop-success': {
+'drop-success': {
           '0%': { transform: 'scale(1)', backgroundColor: 'rgb(16, 185, 129)' },
           '50%': { transform: 'scale(1.1)', backgroundColor: 'rgb(5, 150, 105)' },
           '100%': { transform: 'scale(1)', backgroundColor: 'rgb(16, 185, 129)' }
+        },
+        'word-slide': {
+          '0%': { transform: 'translateX(-20px)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
+        },
+        'sentence-build': {
+          '0%': { transform: 'scale(0.8) rotate(-2deg)', opacity: '0' },
+          '50%': { transform: 'scale(1.05) rotate(1deg)', opacity: '0.8' },
+          '100%': { transform: 'scale(1) rotate(0deg)', opacity: '1' }
+        },
+        'feedback-pulse': {
+          '0%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(139, 92, 246, 0.7)' },
+          '50%': { transform: 'scale(1.02)', boxShadow: '0 0 0 10px rgba(139, 92, 246, 0)' },
+          '100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(139, 92, 246, 0)' }
         }
       }
     },
